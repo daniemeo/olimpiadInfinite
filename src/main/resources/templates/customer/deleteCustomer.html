@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <link th:rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" >
+ <link th:rel="stylesheet" th:href="@{/assets/css/global.css}" >
+<title>Delete</title>
+</head>
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+	<main role="main" class="container">
+    <div class='card'>
+      <div class='card-header'>
+		        Controllo delete
+   	  </div>
+   	  <div class='card-body'>
+	     Vuoi eliminare il customer?
+	     <br>
+	     
+	   </div>
+	   <div th:object="${deleteModel}">
+	   <p><a th:href="@{/customer/executeDeleteCustomer/{idDelete}(idDelete=*{idDelete})}"  class="btn btn-primary" style='width:100px'> Conferma </a>
+	  
+	   <a th:href="@{/customer}" class='btn btn-outline-secondary' style='width:100px'> Back </a></p>		
+	  
+				
+    </div>
+    </main>
+</body>
+</html>

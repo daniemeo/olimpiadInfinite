@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+ <link th:rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" >
+ <link th:href="@{/assets/css/global.css}" th:rel="stylesheet">
+ <style th:type="@{text/css}">
+    	body {
+		  padding-top: 3.5rem;
+		}	
+    </style>
+    
+    <title>Gestione ordini</title>
+</head>
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+<main role="main">
+	<div class="jumbotron" >
+	    <div class="container">
+	      <h1 class="display-3">Welcome in Olipiadi infinite!!!!!</h1>
+	         <div sec:authorize="hasAuthority('ORGANIZZATORE')">
+            <p><a class="btn btn-primary btn-lg" th:href="@{/competition}" role="button">Gestione Evento</a></p>
+            <p><a class="btn btn-primary btn-lg" th:href="@{/nationRepresentative/registerRappresentation}" role="button">Gestione Rappresentanza</a></p>
+             </div>
+              <div sec:authorize="hasAuthority('RAPPRESENTANTE_NAZIONE')">
+            <p><a class="btn btn-primary btn-lg" th:href="@{/nationRepresentative}" role="button">Gestione Rappresentanza</a></p>
+            </div>
+            <div sec:authorize="hasAuthority('ATLETA')">
+            <p><a class="btn btn-primary btn-lg" th:href="@{/athlete}" role="button">Gestione Carriera</a></p>
+            </div>
+	    </div>
+	</div>
+	  
+
+</main>
+<nav th:include="@{/footer.html}"></nav>
+</body> 
+</html>

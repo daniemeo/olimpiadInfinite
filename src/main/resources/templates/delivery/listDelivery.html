@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard delivery</title>
+    <link th:rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" >
+	<link th:href="@{/assets/css/global.css}" th:rel="stylesheet">
+</head>
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+<main role="main" class="container">
+         <div class='card'>
+		    <div class='card-header'>
+		        <h5>Dashboard delivery</h5> 
+		    </div>
+
+ <div class='card-body'>
+    <form action="#" th:action="@{/delivery}" th:object="${searchFilters}" method="get">
+    	<p><a class="btn btn-primary"  th:href="@{/delivery/addDelivery}"> Add delivery</a></p>
+    	 <div class="form-row">
+          		<div class="form-group col-md-6">
+					<label>Description: </label> 
+					<input th:field="*{description}" type="text">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Shipping Date: </label> 
+					<input th:field="*{shippingDate}"type="date">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Price:</label> 
+					<input th:field="*{price}"type="text">
+				</div>
+				<div class="form-group col-md-6">
+				    <label>Customer:</label> 
+					<select th:field="*{customer}">
+						<option value="">- Select Customer -</option>
+						<option  th:each= "customer : ${customers}"  th:value="${customer.id}" th:text="${customer.name}" />
+					</select>	
+				</div>	
+        <p><input class="btn btn-primary" type="submit" value="Search"/></p>
+        </div>
+    </form>
+</div>
+<table class='table table-striped '>
+    <thead>
+    <tr>
+       
+        <th>Description</th>
+        <th>Shipping Date</th>
+        <th>Price</th>
+        <th>Customer</th>
+        <th> Action </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="delivery: ${delivery}" th:object="${delivery}" >
+        <td th:text="*{description}"></td>
+        <td th:text="*{shippingDate}"></td>
+        <td th:text="*{price}"></td>
+         <td th:text="*{customer.name}"></td>
+        <td>
+        <a class="btn btn-sm btn-outline-secondary"  th:href="@{/delivery/showDelivery(id=${delivery.id})}"> view</a>
+        <a class="btn btn-sm btn-outline-primary ml-2 mr-2" th:href="@{/delivery/updateDelivery(id=${delivery.id})}"> update</a>
+        <a class="btn btn-outline-danger btn-sm" th:href="@{/delivery/prepareDeleteDelivery(id=${delivery.id})}"> delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+ 
+ 
+ </div>
+ </main> 
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>show Delivery</title>
+ <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<nav th:include="@{/header.html}"></nav>
+ <link th:href="@{/assets/css/global.css}" rel="stylesheet">
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+<main role="main" class="container">
+		<div class='card'>
+		    <div class='card-header'>
+		        View Delivery
+		    </div>
+  				<div class='card-body' th:object = '${delivery}'>
+		    
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Description:</dt>
+				  <dd class="col-sm-9" th:text="*{description}"></dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Shipping Date</dt>
+				  <dd class="col-sm-9" th:text="*{shippingDate}"></dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Price</dt>
+				  <dd class="col-sm-9" th:text="*{price}"></dd>
+		    	</dl>
+		       	<dl class="row">
+				  <dt class="col-sm-3 text-right">Customer</dt>
+				  <dd class="col-sm-9" th:text="*{customer.name}"></dd>
+		    	</dl>
+		    
+		    	
+		    	</div>
+		    	<a th:href="@{/delivery}" class='btn btn-outline-secondary' style='width:100px'> Back </a></p>		
+		    </div>
+		
+</main>
+<nav th:include="@{/footer.html}"></nav>
+</body>
+</html>

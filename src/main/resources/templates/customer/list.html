@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard customer</title>
+    <link th:rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" >
+	<link th:href="@{/assets/css/global.css}" th:rel="stylesheet">
+
+</head>
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+<main role="main" class="container">
+         <div class='card'>
+		    <div class='card-header'>
+		        <h5>Dashboard customer</h5> 
+		    </div>
+		 
+		 <div class='card-body'>
+			 <form action="#" th:action="@{/customer}" th:object="${searchFilters}" method="get">
+			  <p> <a class="btn btn-primary" th:href="@{/customer/addCustomer}"> Add Customer</a></p>
+			  <div class="form-row">
+               		<div class="form-group col-md-6">
+						<label>ID: </label> 
+						<input th:field="*{id}" type="text">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label>Name:</label> 
+						<input th:field="*{name}" type="text">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label>Address:</label> 
+						<input th:field="*{address}" type="text">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label>Mobile:</label> 
+						<input th:field="*{mobile}" type="text">
+					</div>
+               </div>
+               <p><input class="btn btn-primary" type="submit" value="Cerca"/></p>
+   			 </form>
+		
+	  </div>
+
+		
+<table class='table table-striped '>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Mobile</th>
+        <th> Action </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}" th:object="${customer}" >
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{address}"></td>
+        <td th:text="*{mobile}"></td>
+        <td>
+        <a class="btn btn-sm btn-outline-secondary"  th:href="@{/customer/showCustomer(id=${customer.id})}"> view </a>
+        <a class="btn btn-sm btn-outline-primary ml-2 mr-2" th:href="@{/customer/updateCustomer(id=${customer.id})}"> update</a>
+        <a class="btn btn-outline-danger btn-sm" th:href="@{/customer/prepareDeleteCustomer/{idDelete}(idDelete=*{id})}"> delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+  <div th:object="${deleteModel}">
+  	<p style="color:red" th:if="${#fields.hasErrors('idDelete')}" th:errors="*{idDelete}"></p>
+  </div>
+ </div>
+   </main>
+</body>
+</html>

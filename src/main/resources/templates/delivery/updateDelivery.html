@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<link th:rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" >
+<link th:href="@{/assets/css/global.css}" th:rel="stylesheet">
+<title>Delivery Update</title>
+</head>
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+<main role="main" class="container">
+	<div class='card'>
+	    <div class='card-header'>
+	        <h5>Update Delivery</h5> 
+	    </div>
+        <div class='card-body'>
+   			 <form action="#" th:action="@{/delivery/updateDelivery}" th:object="${deliveryUpdateModel}" method="post">
+   			 	<div class="form-row">
+     				<input type="hidden" th:field="*{id}">
+                    <p style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>
+                    <div class="form-group col-md-6">
+                    	<label>Description:</label>
+                   		<input th:field="*{description}" type="text">
+        				<p style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+        			</div>
+        			 <div class="form-group col-md-6">
+                    	<label>Shipping Date:</label>
+                   		<input th:field="*{shippingDate}" type="date">
+        				 <p style="color:red" th:if="${#fields.hasErrors('shippingDate')}" th:errors="*{shippingDate}"></p>
+        			</div>
+        			<div class="form-group col-md-6">
+                    	<label>Price:</label>
+                   		<input th:field="*{price}" type="number">
+        				<p style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+        			</div>
+        			<div class="form-group col-md-6">
+                    	<label>Customer:</label>
+                   		 <select th:field="*{customer.id}">
+						 	<option  th:each= "customer : ${customers}"  th:value="${customer.id}" th:text="${customer.name}" th:selected="*{customer}"/>
+						 </select>	
+						 <p style="color:red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}"></p>
+        			</div>
+
+        <p><input type="submit" value="Update" class="btn btn-primary" style='width:100px' /></p>
+    </form>
+</div>
+</body>
+</html>

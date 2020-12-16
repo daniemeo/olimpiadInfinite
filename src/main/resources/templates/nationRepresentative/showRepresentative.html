@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>show Delivery</title>
+ <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<nav th:include="@{/header.html}"></nav>
+ <link th:href="@{/assets/css/global.css}" rel="stylesheet">
+<body>
+<nav th:include="@{/navbar.html}"></nav>
+<main role="main" class="container">
+		<div class='card'>
+		    <div class='card-header'>
+		        View Representative 
+		    </div>
+  				<div class='card-body' th:object = '${representative}'>
+		    
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Name:</dt>
+				  <dd class="col-sm-9" th:text="*{name}"></dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Surname</dt>
+				  <dd class="col-sm-9" th:text="*{surname}"></dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Fiscal Code</dt>
+				  <dd class="col-sm-9" th:text="*{fiscalCode}"></dd>
+		    	</dl>
+		       	<dl class="row">
+				  <dt class="col-sm-3 text-right">Nation </dt>
+				  <dd class="col-sm-9" th:text="*{nationDto.name}"></dd>
+		    	</dl>
+		    	 
+		    	 <dl class="row" >
+				  <dt class="col-sm-3 text-right">Athlete </dt>
+				  <dd class="col-sm-9" th:text="*{athleteDto}"></dd>
+		    	</dl>
+		    	
+		    
+		    	
+		    	</div>
+		    	<a th:href="@{/}" class='btn btn-outline-secondary' style='width:100px'> Back </a></p>		
+		    </div>
+		
+</main>
+<nav th:include="@{/footer.html}"></nav>
+</body>
+</html>

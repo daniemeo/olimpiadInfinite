@@ -19,15 +19,15 @@ import it.solvingteam.course.olimpiadinfinite.model.user.User;
 @Entity
 public class NationRepresentative extends Person{
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "nation_id",referencedColumnName = "id")
 	private Nation nation;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "nationRepresentative", orphanRemoval = true)
 	private Set<Athlete> athletes = new HashSet<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
 
 

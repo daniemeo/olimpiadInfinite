@@ -3,6 +3,7 @@ package it.solvingteam.course.olimpiadinfinite.model.athlete;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import it.solvingteam.course.olimpiadinfinite.model.Person;
 import it.solvingteam.course.olimpiadinfinite.model.Role;
@@ -35,8 +37,8 @@ public class Athlete extends Person{
 	@JoinColumn(name = "nationRepresentative_id", nullable = false)
 	private NationRepresentative nationRepresentative;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
 	
 	@ManyToMany

@@ -15,8 +15,8 @@
 		        <h5>Dashboard Nation Representative</h5> 
 		    </div>
 		    <div class='card-body'>
-    <form action="#" th:action="@{/nationRepresentative/registerRappresentation}" th:object="${searchFilters}" method="get">
-<p> <a class="btn btn-primary" th:href="@{/nationRepresentative/signup}"> Register Nation Representative</a></p>
+    <form action="#" th:action="@{/organizer/registerRappresentation}" th:object="${searchFilters}" method="get">
+<p> <a class="btn btn-primary" th:href="@{/organizer/signup}"> Register Nation Representative</a></p>
  <div class="form-row">
           		<div class="form-group col-md-6">
 					<label>Name: </label> 
@@ -65,8 +65,9 @@
         <td th:text="*{userDto.username}"></td>
          <td th:text="*{nationDto.name}"></td>
         <td>
-        <a class="btn btn-sm btn-outline-secondary"  th:href="@{/nationRepresentative/showRepresentative(id=${nationRepresentative.id})}"> view </a>
-        <a class="btn btn-sm btn-outline-primary ml-2 mr-2" th:href="@{/nationRepresentative/showRepresentative(id=${nationRepresentative.id})}"> update</a>
+        <a class="btn btn-sm btn-outline-secondary"  th:href="@{/organizer/showRepresentative(id=${nationRepresentative.id})}"> view </a>
+        <a class="btn btn-sm btn-outline-primary ml-2 mr-2" th:href="@{/organizer/showRepresentative(id=${nationRepresentative.id})}"> update</a>
+          <a class="btn btn-outline-danger btn-sm" th:href="@{/organizer/prepareDeleteNationRepresentative/{idDelete}(idDelete=*{id})}"> delete</a>
         </td>
     </tr>
     </tbody>

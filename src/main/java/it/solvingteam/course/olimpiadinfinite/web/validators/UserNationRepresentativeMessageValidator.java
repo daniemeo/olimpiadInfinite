@@ -1,6 +1,6 @@
 package it.solvingteam.course.olimpiadinfinite.web.validators;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,14 +8,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import it.solvingteam.course.olimpiadinfinite.dto.messages.InsertNationRepresentativeMessageDto;
-import it.solvingteam.course.olimpiadinfinite.model.user.User;
-import it.solvingteam.course.olimpiadinfinite.service.UserService;
+import it.solvingteam.course.olimpiadinfinite.model.nationRepresentative.NationRepresentative;
+import it.solvingteam.course.olimpiadinfinite.service.NationRepresentativeService;
 
 @Component
 public class UserNationRepresentativeMessageValidator implements Validator{
 	
-	   @Autowired
-	    private UserService userService;
+   @Autowired
+    private NationRepresentativeService nationRepresentativeService;
 	   
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -25,18 +25,14 @@ public class UserNationRepresentativeMessageValidator implements Validator{
 	@Override
 	public void validate(Object o, Errors errors) {
 		InsertNationRepresentativeMessageDto insertNationRepresentativeMessageDto = (InsertNationRepresentativeMessageDto)o;
-			
+		List<NationRepresentative> nationRepresentatives = nationRepresentativeService.findAll();
+		for(NationRepresentative nationRepresentative : nationRepresentatives) {
 		
-		
-	        if (!insertNationRepresentativeMessageDto.getUserSignupMessageDto().getPassword().equals(insertNationRepresentativeMessageDto.getUserSignupMessageDto().getRepeatePassword())) {
-	            errors.rejectValue("repeatePassword", "passwordsDoesntMatch", "Password doesn't match");
-	        }
-
-	        Optional<User> user = userService.findUserByUSername(insertNationRepresentativeMessageDto.getUserSignupMessageDto().getUsername());
-	        if (user.isPresent()) {
-	            errors.rejectValue("username", "usernameAlreadyExists", "Username already exists");
-	        }
-		
+			if(insertNationRepresentativeMessageDto.getNation().equals(nationRepresentative.getNation().getId().toString())) {
+				errors.rejectValue("nation", "nationAlreadyExists", "Nation already has a representative");
+			}
+		}
+	        
 	}
 
 }

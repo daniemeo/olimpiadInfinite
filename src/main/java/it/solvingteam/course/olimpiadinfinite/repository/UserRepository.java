@@ -8,4 +8,5 @@ import it.solvingteam.course.olimpiadinfinite.model.user.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	  Optional<User> findByUsername(String username);
+
 }

@@ -27,6 +27,7 @@ public class UserSignupMessageValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         UserSignupMessageDto userSignupMessageDto = (UserSignupMessageDto) o;
+       
 
         if (!userSignupMessageDto.getPassword().equals(userSignupMessageDto.getRepeatePassword())) {
             errors.rejectValue("repeatePassword", "passwordsDoesntMatch", "Password doesn't match");

@@ -20,7 +20,7 @@
 	      <h1 class="display-3">Welcome in Olipiadi infinite!!!!!</h1>
 	         <div sec:authorize="hasAuthority('ORGANIZZATORE')">
             <p><a class="btn btn-primary btn-lg" th:href="@{/competition}" role="button">Gestione Evento</a></p>
-            <p><a class="btn btn-primary btn-lg" th:href="@{/nationRepresentative/registerRappresentation}" role="button">Gestione Rappresentanza</a></p>
+            <p><a class="btn btn-primary btn-lg" th:href="@{/organizer/registerRappresentation}" role="button">Gestione Rappresentanza</a></p>
              </div>
               <div sec:authorize="hasAuthority('RAPPRESENTANTE_NAZIONE')">
             <p><a class="btn btn-primary btn-lg" th:href="@{/nationRepresentative}" role="button">Gestione Rappresentanza</a></p>

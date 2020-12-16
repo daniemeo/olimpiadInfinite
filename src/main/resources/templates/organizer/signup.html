@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Sign-up</h1>
-<form action="#" th:action="@{/nationRepresentative/signup}" method="post" th:object="${nationRepresentativeInsertModel}">
+<form action="#" th:action="@{/organizer/signup}" method="post" th:object="${nationRepresentativeInsertModel}">
 
     <p>Name: <input type="text" th:field="*{name}"/></p>
     <p style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>

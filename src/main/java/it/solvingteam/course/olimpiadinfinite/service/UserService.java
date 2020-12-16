@@ -1,6 +1,7 @@
 package it.solvingteam.course.olimpiadinfinite.service;
 
 
+import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import it.solvingteam.course.olimpiadinfinite.dto.messages.InsertNationRepresentativeMessageDto;
+import it.solvingteam.course.olimpiadinfinite.dto.messages.UserSignupMessageDto;
 import it.solvingteam.course.olimpiadinfinite.model.Role;
 import it.solvingteam.course.olimpiadinfinite.model.UserPrincipal;
 import it.solvingteam.course.olimpiadinfinite.model.user.User;
 import it.solvingteam.course.olimpiadinfinite.repository.UserRepository;
+
 
 @Service
 public class UserService implements UserDetailsService {
@@ -54,6 +57,22 @@ public class UserService implements UserDetailsService {
        
         this.userRepository.save(user);
     }
+//	
+	//per organizzatore
+//	 public void signup(UserSignupMessageDto userSignupMessageDto)  {
+//	        String username = userSignupMessageDto.getUsername();
+//	        String passwordEncoded = passwordEncoder.encode(userSignupMessageDto.getPassword());
+//	        
+//
+//	        User user = new User();
+//	        user.setUsername(username);
+//	        user.setPassword(passwordEncoded);
+//          user.setRole(Role.ORGANIZZATORE);
+//	       
+//
+//	        this.userRepository.save(user);
+//	    }
+
 
 
 }

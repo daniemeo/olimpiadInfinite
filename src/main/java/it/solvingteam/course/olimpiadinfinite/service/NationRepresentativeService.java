@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.solvingteam.course.olimpiadinfinite.dto.messages.DeleteNationRepresentantMessageDto;
 import it.solvingteam.course.olimpiadinfinite.dto.messages.InsertNationRepresentativeMessageDto;
 import it.solvingteam.course.olimpiadinfinite.dto.messages.NationRepresentativeDto;
 import it.solvingteam.course.olimpiadinfinite.dto.messages.NationRepresentativeSearchFilterDto;
@@ -23,6 +24,7 @@ import it.solvingteam.course.olimpiadinfinite.model.nation.Nation;
 import it.solvingteam.course.olimpiadinfinite.model.nationRepresentative.NationRepresentative;
 import it.solvingteam.course.olimpiadinfinite.model.user.User;
 import it.solvingteam.course.olimpiadinfinite.repository.NationRepresentativeRepository;
+
 
 
 
@@ -46,14 +48,22 @@ public class NationRepresentativeService {
 	 @Autowired
 	 private EntityManager entityManager;
 	 
-	 public List<NationRepresentativeDto> findAll() {
-			List<NationRepresentative> allNationRepresentative = this.nationRepresentativeRepository.findAll();
-			return nationRepresentativeMapper.convertEntityToDto(allNationRepresentative);
+//	 public List<NationRepresentativeDto> findAll() {
+//			List<NationRepresentative> allNationRepresentative = this.nationRepresentativeRepository.findAll();
+//			return nationRepresentativeMapper.convertEntityToDto(allNationRepresentative);
+//		}
+	 public List<NationRepresentative> findAll() {
+//			List<NationRepresentative> allNationRepresentative = this.nationRepresentativeRepository.findAll();
+			return this.nationRepresentativeRepository.findAll();
 		}
 	 
 	 public Optional<NationRepresentative> findById(Long id) {
 			return this.nationRepresentativeRepository.findById(id);
 		}
+	 
+	 public Optional<NationRepresentative> findByFiscalCode(String fiscalCode){
+		  return this.nationRepresentativeRepository.findByFiscalCode(fiscalCode);
+	  }
 
 	 public void insertNationRepresentative(InsertNationRepresentativeMessageDto insertNationRepresentativeMessageDto)  {
 			NationRepresentative nationRepresentative =nationRepresentativeMapper.convertDtoToEntity(insertNationRepresentativeMessageDto);
@@ -100,5 +110,15 @@ public class NationRepresentativeService {
 		public NationRepresentativeShowDto convertRepresentative(Long id) {
 			NationRepresentative nationRepresentative = this.findById(id).orElse(null);
 			return nationRepresentativeMapper.convertEntityToDtoShow(nationRepresentative);
+		}
+		
+		public NationRepresentative getRepresentantFromDeleteDto(DeleteNationRepresentantMessageDto deleteNationRepresentantMessageDto) {
+			NationRepresentative nationRepresentant = this.findById(Long.parseLong(deleteNationRepresentantMessageDto.getIdDelete())).orElse(null);
+			return nationRepresentant;
+		} 
+		
+		public void delete(Long id) {
+			NationRepresentative nationRepresentative = nationRepresentativeRepository.findById(id).orElse(null);
+			this.nationRepresentativeRepository.delete(nationRepresentative);
 		}
 }
